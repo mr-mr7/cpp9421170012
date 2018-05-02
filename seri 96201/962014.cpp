@@ -1,35 +1,26 @@
 #include <iostream>
 using namespace std ;
-class Node {
+class happyDay {
+	public :
+		int day , month , year ;
+};
+class Node : public happyDay{
 public :
 	string name , lastName , address , email ;
 	int tel , postalcode ;
 	Node *next ;
 	Node *back ;
 };
-/*class happyDay {
-	public :
-		int day , month , year ;
-		happyDay (int year1 , int month1 , int day1) : year(year1) , month(month1) , day(day1) {}
-};*/
 class person {
 	Node *head , *last , *pl ;
 	public :		
 		person () {
 			head = 0 ;
 		}                                                        
-		//int tel , postalCode ; 
 		void search (void) ;
 		void sort (void) ;
 		void show (void) ;
 		void add (void) ;
-	/*	Node operator= (Node *c) {
-		Node *temp ;
-		temp = new Node ;
-		temp->name = c->name ;
-		temp->lastName = c->lastName ;
-		return *temp ;
-		}*/
 };
 void person:: add (void) {
 	Node *temp ;
@@ -50,6 +41,12 @@ void person:: add (void) {
 		cin >> head->tel ;
 		cout << "enter postalcode :  " ;
 		cin >> head->postalcode ;
+		cout << "enter the " ;
+		cin >> head->day ;
+		cout << "enter the " ;
+		cin >> head->month ;
+		cout << "enter the " ;
+		cin >> head->year ;
 		last = head ;
 		pl = head ;
 	}
@@ -69,13 +66,17 @@ void person:: add (void) {
 		cin >> last->tel ;
 		cout << "enter postalcode :  " ;
 		cin >> last->postalcode ;
+		cout << "enter the birthday :  " ;
+		cin >> head->day ;
+		cout << "enter the birth month :  " ;
+		cin >> head->month ;
+		cout << "enter the Year of Birth :  " ;
+		cin >> head->year ;
 	}
 }
 void person:: show (void) {
 	for (; last ; last = last->back) {
 		pl = last ;
-		/*cout << "name 1 =  " << last->name << endl ;
-		cout << "lastname 1 =  " << last->lastName << endl ;*/
 	}
 	last = pl ;
 	for (; last ; last = last->next ){
@@ -85,6 +86,7 @@ void person:: show (void) {
 		cout << "email =  " << last->email << endl ;
 		cout << "tel =  " << last->tel << endl ;
 		cout << "postalcode = " << last->postalcode << endl ;
+		cout << "happy day : " <<last->year << " / " << last->month << " / " << last->day ; ;
 		cout << "-------------------------------------------\n" ;
 	}
 }
@@ -118,29 +120,25 @@ void person::sort (void)  {
 		for (pl2 = pl3 ; pl2 ; pl2 = pl2->next) {
 			for (int i = 0 ; pl2->lastName[i] ; i++) {
 				if (pl2->lastName[i] < pl3->lastName[i] ) {
-					/*temp = pl3 ;
-					pl3->next = pl2->next ;
-					pl3->back = pl2->back ;
-					pl2->next = temp->next ;
-					pl2->back = temp->back ;	
-					//cout << "\n pl2->lastName [" << i << "] =  " << pl2->lastName[i] ;
-					/*temp = pl3 ;
-					pl3 = pl2 ;
-					pl2 = temp ;*/
-					//cout << "\n pl2->lastName [" << i << "] =  " << pl2->lastName[i] ;
 					temp->name = pl3->name ;
 					temp->lastName = pl3->lastName ;
 					temp->address = pl3->address ;
 					temp->email = pl3->email ;
 					temp->tel = pl3->tel ;
 					temp->postalcode = pl3->postalcode ;
-					//temp = pl3 ;
+					temp->year = pl3->year ;
+					temp->month = pl3->month ;
+					temp->day = pl3->day ;
+					
 					pl3->name = pl2->name ;
 					pl3->lastName = pl2->lastName ;
 					pl3->address = pl2->address ;
 					pl3->email = pl2->email ;
 					pl3->tel = pl2->tel ;
 					pl3->postalcode = pl2->postalcode ;
+					pl3->year = pl2->year ;
+					pl3->month = pl2->month ;
+					pl3->day = pl2->day ;
 					
 					pl2->name = temp->name ;
 					pl2->lastName = temp->lastName ;
@@ -148,6 +146,9 @@ void person::sort (void)  {
 					pl2->email = temp->email ;
 					pl2->tel = temp->tel ;
 					pl2->postalcode = temp->postalcode ;
+					pl2->year = temp->year ;
+					pl2->month = temp->month ;
+					pl2->day = temp->day ;
 					break ;
 				}
 				if (pl2->lastName[i] > pl3->lastName[i]) {
@@ -159,16 +160,14 @@ void person::sort (void)  {
 } 
 int main () {
 	person a ;
-	for (int i = 0 ; i < 3 ; i++)
+	int n ;
+	cout << "enter the number of person :  " ;
+	for ( ; n > 0 ; n--)
 		a.add() ;
 	a.show() ;
 	a.search() ;
 	a.sort() ;
 	cout << " \n this is sorted ! \n" ;
 	a.show() ;
-	
 	return 0 ;
 }
-
-
-
