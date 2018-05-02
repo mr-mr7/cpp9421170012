@@ -1,6 +1,7 @@
 /* area of triangle & enviroment of triangle have problem */
 
 #include <iostream>
+#include <cmath>
 using namespace std ;
 class point {
 	public :
@@ -41,7 +42,6 @@ double rectangular:: area () {
 //---------- End Rectangular ---------
 
 //---------- Start Triangle ---------
-//ba farz in ke mosalas ghaeomalzavieh bashad 
 class Triangle {
 	public :
 		point a , b , c ;
@@ -54,10 +54,20 @@ class Triangle {
 		}
 };
 double Triangle:: environment () {
-	return (a.x-b.x)+ ;
+	int A , B , C ;
+	A = sqrt ((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)) ;
+	B = sqrt ((c.x - a.x) * (c.x - a.x) + (c.y - a.y) * (c.y - a.y)) ;
+	C = sqrt ((c.x - b.x) * (c.x - b.x) + (c.y - b.y) * (c.y - b.y)) ;
+	return A + B + C ;
 }
 double Triangle:: area () {
-	return 1 ;
+	int A , B , C ;
+	double p ;
+	A = sqrt ((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)) ;
+	B = sqrt ((c.x - a.x) * (c.x - a.x) + (c.y - a.y) * (c.y - a.y)) ;
+	C = sqrt ((c.x - b.x) * (c.x - b.x) + (c.y - b.y) * (c.y - b.y)) ;
+	p = A + B + C ;
+	return sqrt (p * (p - A) * (p - B) * (p - C)) ;
 }
 //---------- End Triangle ---------
 
@@ -80,10 +90,3 @@ double Circle:: area () {
 	return 3.14 * r * r ;
 }
 //---------- End Circle ---------
-
-int main () {
-	point a(3,3) , b(8,3) , c(8,5) , d(3,5) ;
-	rectangular m( a , b , c , d ) ;
-	cout << "area of rectangular  = " << m.area() << endl ;
-	cout << "environment of rectangular  = " << m.environment() << endl ;
-}
